@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/ui-pro",
+    "@nuxtjs/supabase",
   ],
 
   css: ["~/assets/css/main.css"],
