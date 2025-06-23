@@ -13,4 +13,22 @@ export default defineNuxtConfig({
   ],
 
   css: ["~/assets/css/main.css"],
+
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL || "http://localhost:3000",
+    },
+  },
+
+  supabase: {
+    redirect: true,
+    key: process.env.SUPABASE_ANON_KEY || "",
+    url: process.env.SUPABASE_URL || "",
+    serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY || "",
+    redirectOptions: {
+      login: "/auth/login",
+      callback: "/auth/confirm",
+      exclude: ["/auth/*"],
+    },
+  },
 });
