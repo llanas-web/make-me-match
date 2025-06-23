@@ -26,18 +26,12 @@ const _useAuth = () => {
     const signup = async (
         email: string,
         password: string,
-        establishment_name: string,
-        full_name: string,
     ) => {
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
             options: {
                 emailRedirectTo: redirectTo,
-                data: {
-                    full_name,
-                    establishment_name,
-                },
             },
         });
         console.log("Signup data:", data);

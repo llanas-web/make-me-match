@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
-import { separator } from '#build/ui'
 
 definePageMeta({
     layout: false,
@@ -25,25 +24,9 @@ const fields = [
         placeholder: 'Entrez votre mot de passe',
         required: true,
     },
-    {
-        name: 'full_name',
-        type: 'text' as const,
-        label: 'Nom complet',
-        placeholder: 'Entrez votre nom complet',
-        required: true,
-    },
-    {
-        name: 'establishment_name',
-        type: 'text' as const,
-        label: 'Nom de la structure',
-        placeholder: 'Entrez le nom de la structure',
-        required: true,
-    },
 ];
 
 const schema = z.object({
-    full_name: z.string().min(2, 'Nom trop court'),
-    establishment_name: z.string().min(2, 'Nom de structure requis'),
     email: z.string().email('E-mail invalide'),
     password: z.string().min(8, 'Doit contenir au moins 8 caractères'),
 })
@@ -54,12 +37,10 @@ const isSignUpSuccessful = ref(false)
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
     loading.value = true
-    const { email, password, full_name, establishment_name } = payload.data
+    const { email, password } = payload.data
     const data = await signup(
         email,
         password,
-        establishment_name,
-        full_name,
     )
     if (data) isSignUpSuccessful.value = true
     loading.value = false
@@ -79,7 +60,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
                 </div>
             </template>
             <template v-else>
-                <UAuthForm :schema="schema" title="Inscription à InvoCloud"
+                <UAuthForm :schema="schema" title="Inscription à Make Me Match"
                     description="Entrez vos informations pour créer votre compte." icon="i-lucide-send" :fields="fields"
                     :disabled="loading" @submit="onSubmit" :submit="{
                         label: 'S\'inscrire', loading: loading,

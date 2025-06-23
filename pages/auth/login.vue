@@ -43,8 +43,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 <template>
   <div class="flex flex-col items-center justify-center gap-4 p-4 h-screen">
     <UPageCard class="w-full max-w-md">
-      <UAuthForm :schema="schema" title="Connexion à InvoCloud"
-        description="Entrez vos identifiants pour accéder à votre compte." icon="i-lucide-send" :fields="fields"
+      <UAuthForm :schema="schema" title="Connexion à Make Me Match"
+        description="Entrez vos identifiants pour accéder à votre compte." icon="i-lucide-user" :fields="fields"
         :disabled="loading" @submit="onSubmit" :submit="{
           label: 'Se connecter',
           loading: loading,
